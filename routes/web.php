@@ -1,16 +1,19 @@
 <?php
 
+use App\Http\Controllers\ResepObatController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AccountController;
-use App\Http\Controllers\AccountingPeriodController;
-use App\Http\Controllers\CashBankController;
-use App\Http\Controllers\JournalEntryController;
-use App\Http\Controllers\LedgerController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\UnitController;
-use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\DokterController;
+use App\Http\Controllers\LaporanKunjunganController;
+use App\Http\Controllers\LaporanKeuanganController;
+use App\Http\Controllers\LaporanObatController;
+use App\Http\Controllers\PasienController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PoliController;
+use App\Http\Controllers\PendaftaranPasienController;
+use App\Http\Controllers\PemeriksaanDokterController;
+use App\Http\Controllers\PemeriksaanLaboratoriumController;
+use App\Http\Controllers\RekamMedisController;
+use App\Http\Controllers\InformasiKesehatanController;
 
 
 
@@ -30,34 +33,23 @@ Route::middleware([
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('accounts', AccountController::class);
-    Route::resource('journals', JournalEntryController::class);
-    Route::resource('produk', ProdukController::class);
-    Route::resource('supplier', SupplierController::class);
-    Route::resource('siswa', SiswaController::class);
-    Route::post('transaksi/reset', [JournalEntryController::class,'reset_transaksi'])->name('transaksi.reset');
+    Route::resource('dokter', DokterController::class);
+    Route::resource('laporankunjungan', LaporanKunjunganController::class);
+    Route::resource('laporankeuangan', LaporanKeuanganController::class);
+    Route::resource('laporanobat', LaporanObatController::class);
+    Route::resource('pasien', PasienController::class);
+    Route::resource('poli', PoliController::class);
     
-    Route::get('laporan/jurnal-umum', [ReportController::class, 'jurnalUmum'])->name('laporan.jurnal-umum');
-    Route::get('laporan/neraca-saldo', [ReportController::class, 'trialBalance'])->name('laporan.neraca-saldo');
-    Route::get('laporan/laba-rugi', [ReportController::class, 'incomeStatement'])->name('laporan.laba-rugi');
-    Route::get('neraca-saldo', [ReportController::class, 'trialBalance'])->name('laporan.neraca-saldo');
-    Route::get('laba-rugi', [ReportController::class, 'incomeStatement'])->name('laporan.laba-rugi');
-    Route::get('neraca', [ReportController::class, 'balanceSheet'])->name('laporan.neraca');
-    Route::get('perubahan-modal', [ReportController::class, 'equityChange'])->name('laporan.perubahan-modal');
-    Route::get('arus-kas', [ReportController::class, 'cashFlow'])->name('laporan.arus-kas');
+    Route::resource('pendaftaranpasien', PendaftaranPasienController::class);
+    Route::resource('pemeriksaandokter', PemeriksaanDokterController::class);
+    Route::resource('resepobat', ResepObatController::class);
+    Route::resource('pemeriksaanlaboratorium', PemeriksaanLaboratoriumController::class);
+    Route::resource('pembayaran', PembayaranController::class);
+    Route::resource('rekammedis', RekamMedisController::class);
 
-    Route::get('/journals/penyesuaian/index', [JournalEntryController::class, 'indexPenyesuaian'])->name('journals.penyesuaian');
-    Route::post('/journals/penyesuaian/store', [JournalEntryController::class, 'storePenyesuaian'])->name('journals.penyesuaian.store');
-
-    Route::get('/journals/penutup/index', [JournalEntryController::class, 'indexPenutup'])->name('journals.penutup');
-    Route::post('/journals/penutup/store', [JournalEntryController::class, 'storePenutup'])->name('journals.penutup.store');
-
-    Route::get('/buku-besar', [LedgerController::class, 'index'])->name('ledger.index');
-
-    Route::get('/kas-bank', [CashBankController::class, 'index'])->name('cashbank.index');
-    Route::post('/kas-bank', [CashBankController::class, 'store'])->name('cashbank.store');
-
-    Route::resource('/periode-akuntansi', AccountingPeriodController::class)->except(['show']);
-    Route::resource('units', UnitController::class);
-
+    Route::get('/informasi-kesehatan', [InformasiKesehatanController::class, 'index'])->name('informasi.kesehatan');
+    Route::get('/informasi/artikel', [InformasiKesehatanController::class, 'artikel'])->name('informasi.artikel');
+    Route::get('/informasi/tips', [InformasiKesehatanController::class, 'tips'])->name('informasi.tips');
+    Route::get('/informasi/pencegahan', [InformasiKesehatanController::class, 'pencegahan'])->name('informasi.pencegahan');
+   
 });
