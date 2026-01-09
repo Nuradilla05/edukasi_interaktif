@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Edukasi Interaktif - Solusi Cerdas untuk Dunia Pendidikan')</title>
+    <title>@yield('title', 'Penerimaan Siswa Baru - SMK Jaya')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,7 +10,7 @@
     <style>
         /* CSS Tambahan untuk Tampilan Awal yang Elegan */
         .hero-section {
-            background: linear-gradient(to right, #198745ff, #20c997); /* Gradient dari hijau ke toska */
+            background: linear-gradient(to right, #2466f7ff, #2466f7ff); /* Gradient dari biru muda ke toska */
             color: white;
             padding: 100px 0;
             text-align: center;
@@ -43,7 +43,7 @@
 
         .hero-section .btn-light {
             background-color: white;
-            color: #198754;
+            color: #264bb1ff;
             border: 2px solid white;
         }
 
@@ -60,7 +60,7 @@
 
         .hero-section .btn-outline-light:hover {
             background-color: white;
-            color: #20c997;
+            color: #6284f1ff;
         }
 
         /* Penyesuaian jika ada footer */
@@ -77,39 +77,37 @@
     @stack('styles')
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/dashboard') }}">Kesehatan</a>
+            <a class="navbar-brand" href="{{ url('/dashboard') }}">Penerimaan Siswa Baru</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- Dropdown Data Layanan Kami -->
+                    <!-- Dropdown Admin -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="menuDataLayanan" data-bs-toggle="dropdown">
-                            Data Layanan Kami
+                            Admin
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="menuDataLayanan">
-                            <li><a class="dropdown-item" href="{{ route('pendaftaranpasien.index') }}">Pendaftaran Pasien</a></li>
-                            <li><a class="dropdown-item" href="{{ route('pemeriksaandokter.index') }}">Pemeriksaan Dokter</a></li>
-                            <li><a class="dropdown-item" href="{{ route('pemeriksaanlaboratorium.index') }}">Pemeriksaan Laboratorium</a></li>
-                            <li><a class="dropdown-item" href="{{ route('pembayaran.index') }}">Pembayaran</a></li>
-                            <li><a class="dropdown-item" href="{{ route('resepobat.index') }}">Resep Obat</a></li>
-                            <li><a class="dropdown-item" href="{{ route('rekammedis.index') }}">Rekam medis</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="menuAdmin">
+                            <li><a class="dropdown-item" href="{{ route('berkaspendaftaran.index') }}">Berkas Pendaftaran</a></li>
+                             <li><a class="dropdown-item" href="{{ route('nilaiseleksi.index') }}">Nilai Seleksi</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pengumuman.index') }}">Pengumuman</a></li>
                         </ul>
                     </li>
 
-                    <!-- Dropdown Data Master -->
+                    <!-- Dropdown Data Calon Siswa -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="menuMaster" data-bs-toggle="dropdown">
-                            Data Master
+                            Data Calon Siswa
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="menuMaster">
-                            <li><a class="dropdown-item" href="{{ route('dokter.index') }}">Dokter</a></li>
-                            <li><a class="dropdown-item" href="{{ route('pasien.index') }}">Pasien</a></li>
-                            <li><a class="dropdown-item" href="{{ route('poli.index') }}">Poli</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="menuCalonSiswa">
+                            <li><a class="dropdown-item" href="{{ route('calonsiswa.index') }}">Calon Siswa</a></li>
+                            <li><a class="dropdown-item" href="{{ route('jurusan.index') }}">Jurusan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pendaftaran.index') }}">Pendaftaran</a></li>
+                           
                         </ul>
                     </li>
 
@@ -119,9 +117,8 @@
                            Laporan
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="menuLaporan">
-                            <li><a class="dropdown-item" href="{{ route('laporankunjungan.index') }}">Laporan Kunjungan</a></li>
-                            <li><a class="dropdown-item" href="{{ route('laporankeuangan.index') }}">Laporan Keuangan</a></li>
-                            <li><a class="dropdown-item" href="{{ route('laporanobat.index') }}">Laporan Obat</a></li>
+                            <li><a class="dropdown-item" href="{{ route('laporan.index') }}">Laporan </a></li>
+                            <li><a class="dropdown-item" href="{{ route('rekapdata.index') }}">Rekap Data</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -153,9 +150,9 @@
         @if (!trim($__env->yieldContent('content')))
             <section class="hero-section">
                 <div class="container">
-                    <h1 class="animate_animated animate_fadeInDown">Layanan Kesehatan Online</h1>
+                    <h1 class="animate_animated animate_fadeInDown">Layanan Penerimaan Siswa Baru </h1>
                     <p class="lead animate_animated animate_fadeInUp">
-                        Platform kesehatan digital untuk membantu Anda berkonsultasi dengan dokter, memantau kesehatan, dan mendapatkan layanan medis secara mudah dan efisien.
+                        Sistem Penerimaan Siswa Baru berbasis web untuk pendaftaran online, seleksi, dan pengumuman secara mudah dan terintegrasi.
                     </p>
                     <div class="mt-4 animate_animated animatefadeInUp animate_delay-1s">
                         @auth
